@@ -1,9 +1,9 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $('.slider').slick({
-        autoplay: true, // Ativar reprodução automática
-        autoplaySpeed: 3000, // Velocidade da reprodução automática em milissegundos
-        arrows: false, // Ocultar setas de navegação
-        dots: true // Mostrar pontos de navegação
+        autoplay: true, // Ativar reproduï¿½ï¿½o automï¿½tica
+        autoplaySpeed: 3000, // Velocidade da reproduï¿½ï¿½o automï¿½tica em milissegundos
+        arrows: false, // Ocultar setas de navegaï¿½ï¿½o
+        dots: true // Mostrar pontos de navegaï¿½ï¿½o
     });
 });
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const content = document.querySelector('.content');
     const showMenuBtn = document.getElementById('show-menu');
 
-    // Adicionar evento de clique ao botão de toggle
+    // Adicionar evento de clique ao botï¿½o de toggle
     toggleBtn.addEventListener('click', function () {
         // Alternar a largura da barra de menu entre 20% e 0%
         if (menuBar.style.width === '0%') {
@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Adicionar evento de clique ao botão para mostrar o menu novamente
+    // Adicionar evento de clique ao botï¿½o para mostrar o menu novamente
     showMenuBtn.addEventListener('click', function () {
         menuBar.style.width = '20%';
         content.style.marginLeft = '20%';
     });
 
-    // Adicionar funcionalidade de carrossel para o banner de conteúdo
+    // Adicionar funcionalidade de carrossel para o banner de conteï¿½do
     const bannerSlider = document.querySelector('.banner-slider');
     const bannerImages = document.querySelectorAll('.banner-slider div');
 
@@ -46,4 +46,36 @@ document.addEventListener('DOMContentLoaded', function () {
         currentIndex = (currentIndex + 1) % bannerImages.length;
         updateBanner();
     }, 5000); // Altere o valor para ajustar a velocidade do carrossel
+});
+
+// FunÃ§Ã£o para comparar dois quadros de funcionÃ¡rios com base em seus nomes
+function compareNames(a, b) {
+    const nameA = a.querySelector('.employee-details h2').textContent.toLowerCase();
+    const nameB = b.querySelector('.employee-details h2').textContent.toLowerCase();
+
+    if (nameA < nameB) {
+        return -1;
+    } else if (nameA > nameB) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+// Captura todos os quadros de funcionÃ¡rios
+const employeeCards = document.querySelectorAll('.employee-card');
+
+// Converte a NodeList em uma matriz para poder ordenÃ¡-la
+const employeeCardsArray = Array.from(employeeCards);
+
+// Ordena os quadros de funcionÃ¡rios com base nos nomes
+employeeCardsArray.sort(compareNames);
+
+// Remove todos os quadros de funcionÃ¡rios do contÃªiner
+const employeeContainer = document.querySelector('.employee-container');
+employeeContainer.innerHTML = '';
+
+// Adiciona os quadros de funcionÃ¡rios ordenados de volta ao contÃªiner
+employeeCardsArray.forEach(function (employeeCard) {
+    employeeContainer.appendChild(employeeCard);
 });
